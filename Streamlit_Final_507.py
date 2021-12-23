@@ -58,4 +58,13 @@ result = st.button('Inpatient Data')
 if result:
     st.dataframe(inpatient_df)
 
+outpatient_df = pd.read_csv('https://raw.githubusercontent.com/hantswilliams/AHI_DataSci_507/main/Deployment_Streamlit/outpatient_2015.csv')
+
+st.text('Click the button to reveal the Outpatient Data')
+
+result = st.button('Outpatient Data')
+
+if result:
+    st.dataframe(outpatient_df)
+
 
