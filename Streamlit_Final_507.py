@@ -86,6 +86,7 @@ st.dataframe(NY)
 
 
 #Answering the following questions
+#Question1
 table1 = NY['hospital_overall_rating'].value_counts().reset_index()
 st.header("Q1: How does Stony Brook ratings compare to NYS hospitals?")
 st.write('In this sections we\'ll see how teh ratings of these 2 hospitals are compared.')
@@ -94,4 +95,30 @@ st.write('Stony Brooks Overall rating is a 4 which is more than NYS in compariso
 result = st.button('Answer')
 if result:
     st.dataframe(table1)
+
+#SBU Filtered Inpatient
+SBU_inpatient = inpatient_df[inpatient_df['provider_id']==330393]
+st.header('Inpatient Data for Stony Brook')
+
+#Question 2:
+st.header('Q2. What is the most expensive inpatient DRGs code for Stony Brook University Hospital?')
+st.subheader('Stony Brook Inpatient DRGs Pivot Table')
+SBU_inpatient_DRGs_pivot = SBU_inpatient.pivot_table(index=['provider_id','provider_name','drg_definition'],values=['average_total_payments'])
+SBU_inpatient_DRGs_desc = SBU_inpatient_DRGs_pivot.sort_values(['average_total_payments'], ascending=False)
+st.markdown('The table reveals that the most expensive inpatient DRGs code for Stony Brook Univeristy Hospital is 003, with an average total payments of $21,667.00')
+st.markdown('003 - ECMO OR TRACH W MV >96 HRS OR PDX EXC FACE, MOUTH & NECK W MAJ O.R.')
+
+result = st.button('Answer')
+if result:
+    st.dataframe(SBU_inpatient_DRGs_desc)
+
+#SBU Filtered Outpatient
+SBU_outpatient = outpatient_df[outpatient_df['provider_id']==330393]
+st.header('Outpatient Data for Stony Brook')
+st.dataframe(SBU_outpatient)
+
+#Question 3:
+st.header('Q3. Whast is the most expensive outpatient DRGs code for Stony Brook Hospital?')
+st.subheader('Outpatient Data for Stony Brook')
+SBU_outpatient_DRGs_pivot = SBU_outpatient.pivot_table(index=['provider_id','provider_name','apc'],values=['average_total_payments'])
 
