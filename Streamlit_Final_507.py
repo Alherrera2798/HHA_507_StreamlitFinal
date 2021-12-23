@@ -108,9 +108,7 @@ SBU_inpatient_DRGs_desc = SBU_inpatient_DRGs_pivot.sort_values(['average_total_p
 st.markdown('The table reveals that the most expensive inpatient DRGs code for Stony Brook Univeristy Hospital is 003, with an average total payments of $21,667.00')
 st.markdown('003 - ECMO OR TRACH W MV >96 HRS OR PDX EXC FACE, MOUTH & NECK W MAJ O.R.')
 
-result = st.button('Answer')
-if result:
-    st.dataframe(SBU_inpatient_DRGs_desc)
+st.dataframe(SBU_inpatient_DRGs_desc)
 
 #SBU Filtered Outpatient
 SBU_outpatient = outpatient_df[outpatient_df['provider_id']==330393]
@@ -121,4 +119,10 @@ st.dataframe(SBU_outpatient)
 st.header('Q3. Whast is the most expensive outpatient DRGs code for Stony Brook Hospital?')
 st.subheader('Outpatient Data for Stony Brook')
 SBU_outpatient_DRGs_pivot = SBU_outpatient.pivot_table(index=['provider_id','provider_name','apc'],values=['average_total_payments'])
+SBU_outpatient_DRGs_desc = SBU_outpatient_DRGs_pivot.sort_values(['average_total_payments'], ascending=False)
+st.markdown('APCs is ambulatory payment classsifications, a classification system for outpatient services')
+st.markdown('Table determines that the most expensive outpatient APCs code for Stony Brook Univeristy Hospital is 0074, with an average total payments of $2,307.21')
+st.markdown('0074 - Level IV Endoscopy Upper Airway')
+st.dataframe(SBU_outpatient_DRGs_desc)
 
+st.header('Q4. Which state has the most total payments?')
