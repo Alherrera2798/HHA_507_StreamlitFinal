@@ -39,12 +39,17 @@ st.write('Alejandro Herrera:sunglasses:')
 #st.text('For this assignment, we were tasked with doing perfoming an analysis for hospital infromation around the US.
 #        For the first part, here are some transofrmation that were applied....')
 
+
+hospital_df = pd.read_csv('https://raw.githubusercontent.com/hantswilliams/AHI_DataSci_507/main/Deployment_Streamlit/hospital_info.csv')
+
 st.text('Click the button to reveal the hospital dataset')
 
 result = st.button('Hospital Data')
 
 if result:
     st.dataframe(hospital_df)
+
+inpatient_df = pd.read_csv('https://raw.githubusercontent.com/hantswilliams/AHI_DataSci_507/main/Deployment_Streamlit/inpatient_2015.csv')
 
 st.text('Click the button to reveal the Inpatient Data')
 
