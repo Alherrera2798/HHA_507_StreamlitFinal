@@ -132,8 +132,9 @@ st.dataframe(SBU_outpatient_DRGs_desc)
 st.header ('Types of hospitals')
 st.subheader('Q4. How many types of hospitals are there in NY?')
 st.subheader('Here are the most common types of Hospitals in the US')
-st.subheader('PIE Chart:')
-hospital_type = hospital_df['hospital_type'].value_counts().reset_index()
+
+
+hospital_type =  hospital_df['hospital_type'].value_counts().reset_index()
+st.subheader('Pie Chart of Hospital Type')
 fig = px.pie(hospital_type, values='hospital_type', names='index')
 st.plotly_chart(fig)
-
