@@ -10,6 +10,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
+import plotly.express as px
 
 @st.cache
 def load_hospitals():
@@ -101,7 +102,8 @@ SBU_inpatient = inpatient_df[inpatient_df['provider_id']==330393]
 st.header('Inpatient Data for Stony Brook')
 
 #Question 2:
-st.header('Q2. What is the most expensive inpatient DRGs code for Stony Brook University Hospital?')
+st.header('Inpatient DRGs Expense')
+st.subheader('Q2. What is the most expensive inpatient DRGs code for Stony Brook University Hospital?')
 st.subheader('Stony Brook Inpatient DRGs Pivot Table')
 SBU_inpatient_DRGs_pivot = SBU_inpatient.pivot_table(index=['provider_id','provider_name','drg_definition'],values=['average_total_payments'])
 SBU_inpatient_DRGs_desc = SBU_inpatient_DRGs_pivot.sort_values(['average_total_payments'], ascending=False)
@@ -116,7 +118,8 @@ st.header('Outpatient Data for Stony Brook')
 st.dataframe(SBU_outpatient)
 
 #Question 3:
-st.header('Q3. Whast is the most expensive outpatient DRGs code for Stony Brook Hospital?')
+st.header('Outpatient DRGs Expense')
+st.subheader('Q3. Whast is the most expensive outpatient DRGs code for Stony Brook Hospital?')
 st.subheader('Outpatient Data for Stony Brook')
 SBU_outpatient_DRGs_pivot = SBU_outpatient.pivot_table(index=['provider_id','provider_name','apc'],values=['average_total_payments'])
 SBU_outpatient_DRGs_desc = SBU_outpatient_DRGs_pivot.sort_values(['average_total_payments'], ascending=False)
@@ -125,4 +128,11 @@ st.markdown('Table determines that the most expensive outpatient APCs code for S
 st.markdown('0074 - Level IV Endoscopy Upper Airway')
 st.dataframe(SBU_outpatient_DRGs_desc)
 
-st.header('Q4. Which state has the most total payments?')
+#Question 4:
+st.header ('Types of hospitals')
+st.subheader('Q4. How many types of hospitals are there in NY?')
+st.subheader('Here are the most common types of ')
+st.subheader('PIE Chart:')
+hospital_type = hospital_df['hospital_type'].value_counts().reset_index()
+fig = px.pie(hospital_type, values='hospital_type', names='index')
+st.plotly_chart()
