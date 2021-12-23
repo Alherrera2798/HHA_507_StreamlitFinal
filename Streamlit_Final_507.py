@@ -94,4 +94,4 @@ st.write('Stony Brooks Overall rating is a 4 which is more than NYS in compariso
 result = st.button('Answer')
 if result:
     st.dataframe(table1)
-st.dataframe(table1)
+
