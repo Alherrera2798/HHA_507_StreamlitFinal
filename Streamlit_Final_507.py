@@ -85,4 +85,9 @@ st.markdown('This dataset shows hospitals located in New York, filtered out from
 st.dataframe(NY)
 
 
-
+#Answering the following questions
+table1 = NY['hospital_overall_rating'].value_counts().reset_index()
+st.header("Q1: How does Stony Brook ratings compare to NYS hospitals?")
+st.write('In this sections we\'ll see how teh ratings of these 2 hospitals are compared.')
+st.write('Stony Brooks Overall rating is a 4 which is more than NYS in comparison')
+st.dataframe(table1)
