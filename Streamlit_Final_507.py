@@ -90,4 +90,8 @@ table1 = NY['hospital_overall_rating'].value_counts().reset_index()
 st.header("Q1: How does Stony Brook ratings compare to NYS hospitals?")
 st.write('In this sections we\'ll see how teh ratings of these 2 hospitals are compared.')
 st.write('Stony Brooks Overall rating is a 4 which is more than NYS in comparison')
+
+result = st.button('Answer')
+if result:
+    st.dataframe(table1)
 st.dataframe(table1)
